@@ -1,0 +1,99 @@
+{
+  "layer": "top",
+  "exclusive": true,
+  "passthrough": false,
+  "position": "top",
+  "margin-bottom": -10,
+  "spacing" : 0,
+  "modules-left": [
+  "mpris"
+  ],
+
+  "modules-center": ["hyprland/workspaces"],
+
+  "modules-right": [
+    "clock",
+    "network",
+    "pulseaudio", 
+    "battery",
+    "custom/power",
+  ],
+
+  
+  "custom/pomodoro": {
+	"format": "{}",
+	"return-type": "json",
+	"exec": "waybar-module-pomodoro --no-work-icons",
+	"on-click": "waybar-module-pomodoro toggle",
+	"on-click-right": "waybar-module-pomodoro reset",
+  },
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "show-special": true,
+    "format-icons": {
+      "active": "",
+      "default": ""
+   }
+},
+  "custom/power": {
+	"format": " ",
+	"tooltip": false,
+	"escape": true,
+	"on-click": "shutdown -h now"
+},
+
+    "mpris": {
+	"player": "spotify",
+	"format": "   {title}",
+	"format-paused": "󰐊  {title}",
+	"interval": 1,
+	"tooltip": false,
+	"on-click": "playerctl play-pause -p spotify",
+	"on-scroll-up": "playerctl next -p spotify",
+	"on-scroll-down": "playerctl previous -p spotify"
+},
+
+    "clock": {
+    "timezone": "Europe/Belfast",
+    "tooltip": false,
+    "format": "  {:%H:%M}",
+    "interval": 1
+  },
+  "network": {
+    "format-wifi": "󰤢 ",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰤠 ",
+    "interval": 5,
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "on-click": "nm-connection-editor"
+
+ },
+  
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": " ",
+    "format-icons": {
+      "default": ["", "", " "]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "battery": {
+        "interval":2,
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        // "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+  },
+}
+
